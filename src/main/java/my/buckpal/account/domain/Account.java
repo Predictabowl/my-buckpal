@@ -25,5 +25,9 @@ public class Account {
 		return activityWindow;
 	}
 
+	public Money calculateBalance() {
+		return null;
+	}
+
 	
 }
