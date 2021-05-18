@@ -1,5 +1,6 @@
 package my.buckpal.account.domain;
 
+import java.time.LocalDateTime;
 
 public class Account {
 	
@@ -26,7 +27,26 @@ public class Account {
 	}
 
 	public Money calculateBalance() {
-		return null;
+		return Money.add(baselineBalance, activityWindow.calculateBalance(id));
+	}
+
+	public boolean withdraw(Money money, AccountId targetId) {
+		if(!mayWithdraw(money)) 
+			return false;
+		Activity withdrawal = new Activity(id, id, targetId, LocalDateTime.now(), money.negate());
+		activityWindow.addActivity(withdrawal);
+		return true;
+	}
+
+	public boolean mayWithdraw(Money money) {
+		return Money.add(this.calculateBalance(), money.negate())
+				.isPositiveOrZero();
+	}
+
+	public boolean deposit(Money money, AccountId sourceAccountId) {
+		Activity deposit = new Activity(id, sourceAccountId, id, LocalDateTime.now(), money);
+		activityWindow.addActivity(deposit);
+		return true;
 	}
 
 	
