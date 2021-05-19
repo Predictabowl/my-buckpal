@@ -1,5 +1,8 @@
 package my.buckpal.application.port.out;
 
-public interface UpdateAccountStatePort {
+import my.buckpal.account.domain.Account;
 
+public interface UpdateAccountStatePort {
+	
+	void updateActivities(Account account);
 }

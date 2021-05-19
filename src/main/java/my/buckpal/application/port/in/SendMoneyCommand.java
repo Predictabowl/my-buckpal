@@ -1,5 +1,6 @@
 package my.buckpal.application.port.in;
 
+
 import jakarta.validation.constraints.NotNull;
 import my.buckpal.account.domain.AccountId;
 import my.buckpal.account.domain.Money;
@@ -15,6 +16,7 @@ public class SendMoneyCommand extends SelfValidating<SendMoneyCommand>{
 	private final Money money;
 	
 	public SendMoneyCommand(AccountId sourceAccountId, AccountId targetAccountId, Money money) {
+		super();
 		this.sourceAccountId = sourceAccountId;
 		this.targetAccountId = targetAccountId;
 		this.money = money;

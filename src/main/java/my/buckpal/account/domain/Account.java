@@ -1,6 +1,7 @@
 package my.buckpal.account.domain;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class Account {
 	
@@ -14,8 +15,8 @@ public class Account {
 		this.activityWindow = activityWindow;
 	}
 
-	public AccountId getId() {
-		return id;
+	public Optional<AccountId> getId() {
+		return Optional.ofNullable(id);
 	}
 
 	public Money getBaselineBalance() {
